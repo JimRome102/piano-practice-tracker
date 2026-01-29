@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pieces    Piece[]
+  sessions  Session[]
+  plans     Plan[]
+}
+
+model Piece {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  composer  String
+  title     String
+  status    String   // learning, polishing, maintaining
+  tags      String   // comma-separated or JSON array
+  notes     String?
+  links     String?  // IMSLP, YouTube, etc.
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workBlocks WorkBlock[]
+  plans      Plan[]
+
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  startedAt    DateTime @default(now())
+  endedAt      DateTime?
+  totalMinutes Int?
+
+  createdAt    DateTime @default(now())
+
+  workBlocks   WorkBlock[]
+
+  @@index([userId])
+  @@index([startedAt])
+}
+
+model WorkBlock {
+  id         String   @id @default(cuid())
+  sessionId  String
+  session    Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  pieceId    String
+  piece      Piece    @relation(fields: [pieceId], references: [id], onDelete: Cascade)
+
+  section    String   // "m.32-48", "coda", "LH alone"
+  focusTags  String   // comma-separated: tempo, voicing, rhythm, memory, pedaling, articulation
+  minutes    Int?
+  tempoNote  String?  // "♩=72→84"
+  improved   String?  // short text
+  sticky     String?  // short text
+
+  createdAt  DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([pieceId])
+  @@index([createdAt])
+}
+
+model Plan {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pieceId        String
+  piece          Piece    @relation(fields: [pieceId], references: [id], onDelete: Cascade)
+
+  durationChoice Int      // 15, 30, or 60 minutes
+  contentJson    String   // JSON string with warmup, drills, checkpoint, notes
+
+  checkedItems   String?  // JSON array of checked drill IDs
+
+  createdAt      DateTime @default(now())
+
+  @@index([userId])
+  @@index([pieceId])
+  @@index([createdAt])
+}
