@@ -69,7 +69,7 @@ async function getNeglectedPieces(userId: string) {
     }
   });
 
-  return pieces.filter(piece => {
+  return pieces.filter((piece: any) => {
     if (piece.workBlocks.length === 0) return true;
     return new Date(piece.workBlocks[0].createdAt) < twoWeeksAgo;
   });
