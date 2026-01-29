@@ -20,15 +20,15 @@ async function getWeeklyStats(userId: string) {
     }
   });
 
-  const totalMinutes = sessions.reduce((sum, s) => sum + (s.totalMinutes || 0), 0);
+  const totalMinutes = sessions.reduce((sum: number, s: any) => sum + (s.totalMinutes || 0), 0);
 
   const daysWithPractice = new Set(
-    sessions.map(s => new Date(s.startedAt).toDateString())
+    sessions.map((s: any) => new Date(s.startedAt).toDateString())
   ).size;
 
   const pieceMinutes = new Map<string, { piece: any; minutes: number }>();
-  sessions.forEach(session => {
-    session.workBlocks.forEach(block => {
+  sessions.forEach((session: any) => {
+    session.workBlocks.forEach((block: any) => {
       const existing = pieceMinutes.get(block.pieceId);
       if (existing) {
         existing.minutes += block.minutes || 0;
