@@ -78,7 +78,7 @@ export default async function PieceDetailPage({ params }: { params: Promise<{ id
 
           {piece.tags && (
             <div className="flex flex-wrap gap-2 mb-4">
-              {piece.tags.split(',').map((tag) => (
+              {piece.tags.split(',').map((tag: string) => (
                 <span key={tag} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                   {tag}
                 </span>
@@ -131,7 +131,7 @@ export default async function PieceDetailPage({ params }: { params: Promise<{ id
             <p className="text-gray-600">No practice sessions yet</p>
           ) : (
             <div className="space-y-4">
-              {piece.workBlocks.map((block) => (
+              {piece.workBlocks.map((block: any) => (
                 <div key={block.id} className="border-l-4 border-blue-500 pl-4 py-2">
                   <div className="flex justify-between items-start mb-2">
                     <div>
@@ -143,7 +143,7 @@ export default async function PieceDetailPage({ params }: { params: Promise<{ id
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-1">
-                      {block.focusTags.split(',').map((tag) => (
+                      {block.focusTags.split(',').map((tag: string) => (
                         <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
                           {tag}
                         </span>

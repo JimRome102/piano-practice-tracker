@@ -51,7 +51,7 @@ export default async function RepertoirePage() {
           </div>
         ) : (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {pieces.map((piece) => (
+            {pieces.map((piece: any) => (
               <div key={piece.id} className="bg-white rounded-lg border p-6 hover:shadow-lg transition-shadow">
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex-1">
@@ -73,7 +73,7 @@ export default async function RepertoirePage() {
 
                 {piece.tags && (
                   <div className="flex flex-wrap gap-1 mb-3">
-                    {piece.tags.split(',').map((tag) => (
+                    {piece.tags.split(',').map((tag: string) => (
                       <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
                         {tag}
                       </span>
