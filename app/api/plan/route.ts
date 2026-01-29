@@ -82,7 +82,7 @@ ${piece.notes ? `- Notes: ${piece.notes}` : ''}
 **Recent Practice Work Blocks (most recent first):**
 ${piece.workBlocks.length === 0
   ? 'No recent practice logged.'
-  : piece.workBlocks.map((block, i) => `
+  : piece.workBlocks.map((block: any, i: number) => `
 ${i + 1}. Section: ${block.section}
    Focus: ${block.focusTags}
    ${block.minutes ? `Duration: ${block.minutes} min` : ''}
