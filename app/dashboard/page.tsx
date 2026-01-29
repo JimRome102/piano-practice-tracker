@@ -137,7 +137,7 @@ export default async function DashboardPage() {
               <p className="text-gray-600">No practice logged this week</p>
             ) : (
               <div className="space-y-3">
-                {stats.topPieces.map(({ piece, minutes }) => (
+                {stats.topPieces.map(({ piece, minutes }: any) => (
                   <div key={piece.id} className="flex justify-between items-center">
                     <div>
                       <p className="font-semibold text-gray-900">{piece.title}</p>
@@ -158,7 +158,7 @@ export default async function DashboardPage() {
               <p className="text-gray-600">All pieces have recent practice</p>
             ) : (
               <div className="space-y-3">
-                {neglectedPieces.map((piece) => (
+                {neglectedPieces.map((piece: any) => (
                   <div key={piece.id} className="flex justify-between items-center">
                     <div>
                       <p className="font-semibold text-gray-900">{piece.title}</p>
