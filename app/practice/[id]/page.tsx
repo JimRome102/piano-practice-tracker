@@ -41,7 +41,7 @@ async function endSession(sessionId: string) {
     where: { sessionId }
   });
 
-  const totalMinutes = workBlocks.reduce((sum, block) => sum + (block.minutes || 0), 0);
+  const totalMinutes = workBlocks.reduce((sum: number, block: any) => sum + (block.minutes || 0), 0);
 
   await prisma.session.updateMany({
     where: { id: sessionId, userId: user.id },
@@ -83,7 +83,7 @@ export default async function PracticeSessionPage({ params }: { params: Promise<
     orderBy: { updatedAt: 'desc' }
   });
 
-  const totalMinutes = session.workBlocks.reduce((sum, block) => sum + (block.minutes || 0), 0);
+  const totalMinutes = session.workBlocks.reduce((sum: number, block: any) => sum + (block.minutes || 0), 0);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -132,7 +132,7 @@ export default async function PracticeSessionPage({ params }: { params: Promise<
                 </p>
               ) : (
                 <div className="space-y-4">
-                  {session.workBlocks.map((block) => (
+                  {session.workBlocks.map((block: any) => (
                     <div key={block.id} className="border-l-4 border-blue-500 pl-4 py-3 bg-gray-50 rounded-r">
                       <div className="flex justify-between items-start mb-2">
                         <div>
@@ -146,7 +146,7 @@ export default async function PracticeSessionPage({ params }: { params: Promise<
                           </p>
                         </div>
                         <div className="flex flex-wrap gap-1 max-w-xs">
-                          {block.focusTags.split(',').map((tag) => (
+                          {block.focusTags.split(',').map((tag: string) => (
                             <span key={tag} className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
                               {tag}
                             </span>

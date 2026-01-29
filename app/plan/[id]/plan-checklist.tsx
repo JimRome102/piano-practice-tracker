@@ -50,7 +50,7 @@ export function PlanChecklist({
       <section>
         <h2 className="text-lg font-bold text-gray-900 mb-3">Warmup</h2>
         <div className="space-y-2">
-          {planContent.warmup.map((item, i) => {
+          {planContent.warmup.map((item: any, i: number) => {
             const id = `warmup-${i}`;
             return (
               <div key={i} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
@@ -76,7 +76,7 @@ export function PlanChecklist({
       <section>
         <h2 className="text-lg font-bold text-gray-900 mb-3">Drills</h2>
         <div className="space-y-3">
-          {planContent.drills.map((drill) => (
+          {planContent.drills.map((drill: any) => (
             <div key={drill.id} className="border-l-4 border-blue-500 bg-gray-50 rounded-r-lg">
               <div className="flex items-start gap-3 p-4">
                 <input

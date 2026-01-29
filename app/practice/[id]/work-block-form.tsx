@@ -55,7 +55,7 @@ export function WorkBlockForm({
           className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">Select piece...</option>
-          {pieces.map((piece) => (
+          {pieces.map((piece: any) => (
             <option key={piece.id} value={piece.id}>
               {piece.title} - {piece.composer}
             </option>
@@ -81,7 +81,7 @@ export function WorkBlockForm({
           Focus Tags
         </label>
         <div className="flex flex-wrap gap-2">
-          {FOCUS_TAG_OPTIONS.map((tag) => (
+          {FOCUS_TAG_OPTIONS.map((tag: string) => (
             <button
               key={tag}
               type="button"

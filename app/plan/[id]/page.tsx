@@ -76,7 +76,7 @@ export default async function PlanViewPage({ params }: { params: Promise<{ id: s
             <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
               <h3 className="font-semibold text-purple-900 mb-2">Plan Notes</h3>
               <ul className="space-y-1">
-                {planContent.notes.map((note, i) => (
+                {planContent.notes.map((note: any, i: number) => (
                   <li key={i} className="text-sm text-purple-800">• {note}</li>
                 ))}
               </ul>
