@@ -2,6 +2,7 @@
 
 A full-stack web application for serious pianists to track practice sessions, manage repertoire, and get AI-powered practice plans.
 
+
 ## Features
 
 - **Repertoire Management**: Create, edit, and organize your piano pieces with status tracking (learning/polishing/maintaining)
