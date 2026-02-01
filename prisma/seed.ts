@@ -1,12 +1,6 @@
-import 'dotenv/config'
 import { PrismaClient } from '@prisma/client'
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 
-const adapter = new PrismaBetterSqlite3({
-  url: 'file:./dev.db'
-})
-
-const prisma = new PrismaClient({ adapter })
+const prisma = new PrismaClient()
 
 async function main() {
   // Create a demo user
